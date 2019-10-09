@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="chart-name" content="渐变填充面积图">
+    <title>F2 图表组件库 - AntV</title>
+    <link rel="stylesheet" href="https://gw.alipayobjects.com/os/rmsportal/YmDAMEQVbLJpVbKiRQVX.css" />
+    
+</head>
+<body>
+<script>/*Fixing iframe window.innerHeight 0 issue in Safari*/document.body.clientHeight;</script>
+
+<script src="https://gw.alipayobjects.com/os/antv/assets/f2/3.3.8/f2.min.js"></script>
+
+<script src="https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js"></script>
+<!-- 在 PC 上模拟 touch 事件 -->
+<script src="https://gw.alipayobjects.com/os/rmsportal/NjNldKHIVQRozfbAOJUW.js"></script>
+
+  <div class="chart-wrapper">
+    <canvas id="mountNode"></canvas>
+  </div>
+  <script>
+  var data = [{
+    time: '2016-08-08 00:00:00',
+    tem: 10
+  }, {
+    time: '2016-08-08 00:10:00',
+    tem: 22
+  }, {
+    time: '2016-08-08 00:30:00',
+    tem: 16
+  }, {
+    time: '2016-08-09 00:35:00',
+    tem: 26
+  }, {
+    time: '2016-08-09 01:00:00',
+    tem: 12
+  }, {
+    time: '2016-08-09 01:20:00',
+    tem: 26
+  }, {
+    time: '2016-08-10 01:40:00',
+    tem: 18
+  }, {
+    time: '2016-08-10 02:00:00',
+    tem: 26
+  }, {
+    time: '2016-08-10 02:20:00',
+    tem: 12
+  }];
+
+  // G2.Chart ???
+  // var chart = new G2.Chart({
+  var chart = new F2.Chart({
+    id: 'mountNode',
+    pixelRatio: window.devicePixelRatio
+  });
+  chart.source(data, {
+    time: {
+      type: 'timeCat',
+      tickCount: 3,
+      range: [0, 1]
+    },
+    tem: {
+      tickCount: 5,
+      min: 0
+    }
+  });
+
+  chart.axis('time', {
+    label: function label(text, index, total) {
+      var textCfg = {};
+      if (index === 0) {
+        textCfg.textAlign = 'left';
+      } else if (index === total - 1) {
+        textCfg.textAlign = 'right';
+      }
+      return textCfg;
+    }
+  });
+  chart.tooltip({
+    showCrosshairs: true
+  });
+
+  chart
+  .area()
+  .position('time*tem')
+  // .color('l(90) 0:#1890FF 1:#f7f7f7')
+  // .color('l(90) 0:#6882FF 1:#6882FF')
+  .color('l(90) 0:#6882FF 1:#FFFFFF')
+  .shape('smooth');
+
+  // 弧线
+  chart
+  .line()
+  .position('time*tem')
+  // .color('l(180) 0:#1890FF 1:#f7f7f7')
+  .shape('smooth');
+
+  // 虚线
+  // chart
+  // .line()
+  // .position('1.5*time*tem');
+  // .shape('smooth');
+  // .color('l(90) 0:#666666')
+  // .color('l(90) 0:#1890FF 1:#f7f7f7')
+  // .shape('smooth');
+
+  // 虚线
+  // chart
+  // .line()
+  // .position('time*tem/2')
+  // .style({
+  //   stroke: '#969696',
+  //   lineDash: [3, 3],// dashed
+  // })
+  // .tooltip(false);
+
+  // 绘制直线
+
+  // 绘制辅助文本
+  chart
+  .guide()
+  .text({
+    content: '预警值: max',
+    position: ['max', 15],
+    offsetY: -5,
+    style: {
+      fill: '#FF4D4F',
+      textAlign: 'end',
+      textBaseline: 'bottom'
+    }
+  });
+  // 绘制辅助文本
+  chart
+  .guide()
+  .text({
+    content: '趋势线',
+    position: ['2016-08-08 00:10:00', 10],
+    offsetY: -70,
+    style: {
+      fill: '#8c8c8c',
+      fontSize: 14,
+      fontWeight: 300
+    },
+  });
+
+  chart.render();
+</script>
+
+
+</body>
+</html>

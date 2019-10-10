@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,height=device-height">
-    <title>基础面积图</title>
+    <title>G2 基础面积图 & OK</title>
     <style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;height:100%;margin:0;}</style>
     <link rel="stylesheet" href="https://gw.alipayobjects.com/os/rmsportal/YmDAMEQVbLJpVbKiRQVX.css" />
 </head>
@@ -58,20 +58,7 @@
     }
   });
 
-  // data = data.map(obj => {
-  //   const {
-  //     value,
-  //     year,
-  //   } = obj;
-  //   let value2 = value - 1000;
-  //   return {
-  //     value2,
-  //     value,
-  //     year,
-  //   }
-  // });
-
-  var chart = new G2.Chart({
+  let chart = new G2.Chart({
     container: 'mountNode',
     forceFit: true,
     height: window.innerHeight
@@ -97,11 +84,11 @@
       }
     }
   });
-  chart.tooltip({
-    crosshairs: {
-      type: 'line'
-    }
-  });
+  // chart.tooltip({
+  //   crosshairs: {
+  //     type: 'line'
+  //   }
+  // });
   //所有的图例都不显示
   chart.legend(false);
   // 关闭 tooltip
@@ -111,10 +98,11 @@
   //   inPlot: false
   // });
   
-
+  // tooltip tempalte 变量必须与在 tooltip 定义的变量完全一直；
   chart.tooltip({
-    showTitle: false,
-    itemTpl: "<li>{year}-{name}-{value} {x}-{y}</li>",
+    // showTitle: false,
+    itemTpl: `<li><span style="color: red">{name}</span>: {year}--{value}`,
+    // itemTpl: "<li>{year}-{name}-{value} {x}-{y}</li>",
     // itemTpl: "<li> 新增用户数: {y}</li>",
     // itemTpl: "<li> 新增用户数: {x}-{y}</li>",
     // itemTpl: "<li> 新增用户数: {year}-{value}</li>",
@@ -142,13 +130,15 @@
   // }))
   .tooltip('year*value', (year, value) => {
     // console.log(year, value);
+    // x,y 应该是，tooltip 回调函数的参数对象的 xAxis 与 yAxis 的坐标值；
     return {
       name: "新增用户数",
       year,
       value,
-      x: year, 
-      // y: value * 1000,
-      y: 1000,
+      // x: year, 
+      // y: 1000,
+      // x,
+      // y,
     };
     // 返回的参数名对应 itemTpl 中的变量名
   })

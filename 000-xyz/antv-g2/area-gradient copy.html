@@ -44,31 +44,18 @@
     }
   ];
 
-  data = data.map((obj, i) => {
+  data = data.map(obj => {
     const {
       value,
       year,
     } = obj;
-    let value2 = 1000 + i *1000;
+    let value2 = value - 300;
     return {
       value2,
       value,
       year,
     }
   });
-
-  // data = data.map(obj => {
-  //   const {
-  //     value,
-  //     year,
-  //   } = obj;
-  //   let value2 = value - 1000;
-  //   return {
-  //     value2,
-  //     value,
-  //     year,
-  //   }
-  // });
 
   var chart = new G2.Chart({
     container: 'mountNode',
@@ -77,14 +64,15 @@
   });
   chart.source(data);
 
-  // console.log(data);
+  console.log(data);
+
   chart.scale({
     value: {
       min: 10000
     },
-    // value2: {
-    //   min: 10000
-    // },
+    value2: {
+      min: 10000
+    },
     year: {
       range: [0, 1]
     }
@@ -101,23 +89,6 @@
       type: 'line'
     }
   });
-  //所有的图例都不显示
-  chart.legend(false);
-  // 关闭 tooltip
-  // chart.tooltip(false);
-  // chart.tooltip(true, {
-  //   showTitle: false,
-  //   inPlot: false
-  // });
-  
-
-  chart.tooltip({
-    showTitle: false,
-    itemTpl: "<li>{year}-{name}-{value} {x}-{y}</li>",
-    // itemTpl: "<li> 新增用户数: {y}</li>",
-    // itemTpl: "<li> 新增用户数: {x}-{y}</li>",
-    // itemTpl: "<li> 新增用户数: {year}-{value}</li>",
-  });
 
 
   // 面积
@@ -128,29 +99,12 @@
   // 左右/水平 渐变色
   .color('l(90) 0:#1890FF 1:#f7f7f7')
   // 上下/垂直 渐变色
-  .shape('smooth')
-  .tooltip(false);
+  .shape('smooth');;
 
   // 线
   chart
   .line()
   .position('year*value')
-  // .tooltip('year*value', (year, value) => ({
-  //   name: "新增用户数", 
-  //   value,
-  // }))
-  .tooltip('year*value', (year, value) => {
-    // console.log(year, value);
-    return {
-      name: "新增用户数",
-      year,
-      value,
-      x: year, 
-      // y: value * 1000,
-      y: 1000,
-    };
-    // 返回的参数名对应 itemTpl 中的变量名
-  })
   .color("#6882FF")
   // .style({
   //   stroke: '#00ff00',
@@ -158,6 +112,7 @@
   // })
   .size(2)
   .shape('smooth');
+
   
   // 绘制辅助线/ 趋势线
   chart
@@ -169,15 +124,7 @@
     lineDash: [3, 3],// dashed
   })
   .size(2)
-  .shape('smooth')
-  .tooltip(false);
-
-  // chart.tooltip('year*value', )
-  // chart.on('tooltip:change', function(ev) {
-  //   const items = ev.items; // tooltip显示的项
-  //   const origin = items[0]; // 将一条数据改成多条数据
-  //   console.log(`items`, items);
-  // });
+  .shape('smooth');
 
   chart.render();
 </script>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height">
+    <title>六边形分箱</title>
+    <style>::-webkit-scrollbar{display:none;}html,body{overflow:hidden;height:100%;margin:0;}</style>
+</head>
+<body>
+<div id="mountNode"></div>
+<script>/*Fixing iframe window.innerHeight 0 issue in Safari*/document.body.clientHeight;</script>
+<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g2-3.5.1/dist/g2.min.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.data-set-0.10.1/dist/data-set.min.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js"></script>
+<script>
+  $.getJSON('https://gw.alipayobjects.com/os/antvdemo/assets/data/gaussion-distribution.json', function(data) {
+    var ds = new DataSet({
+      state: {
+        sizeEncoding: false
+      }
+    });
+    var dv = ds.createView().source(data).transform({
+      sizeByCount: '$state.sizeEncoding', // calculate bin size by binning count
+      type: 'bin.hexagon',
+      fields: ['x', 'y'], // 对应坐标轴上的一个点
+      bins: [10, 5]
+    });
+
+    var chart = new G2.Chart({
+      container: 'mountNode',
+      forceFit: true,
+      height: window.innerHeight
+    });
+    chart.source(dv);
+    chart.tooltip({
+      showTitle: false,
+      crosshairs: false
+    });
+    chart.legend({
+      offset: 40
+    });
+    chart.axis('x', {
+      grid: {
+        lineStyle: {
+          stroke: '#d9d9d9',
+          lineWidth: 1,
+          lineDash: [2, 2]
+        }
+      }
+    });
+    // 六边形
+    chart
+    .polygon()
+    .position('x*y')
+    .color('count', '#BAE7FF-#1890FF-#0050B3')
+    .style({
+      lineWidth: 1,
+      stroke: '#fff'
+    });
+    chart.render();
+
+    var $sizeEncoding = $('#size-encoding');
+    $sizeEncoding.on('change', function() {
+      if ($sizeEncoding.val() === 'on') {
+        ds.setState('sizeEncoding', true);
+      } else {
+        ds.setState('sizeEncoding', false);
+      }
+    });
+  });
+</script>
+</body>
+</html>

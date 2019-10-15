@@ -1,0 +1,162 @@
+[
+  {
+    "name": "全国数据",
+    "key": "all",
+    "group": "Q"
+  },
+  {
+    "name": "北京市",
+    "key": 11,
+    "group": "B"
+  },
+  {
+    "name": "天津市",
+    "key": 12,
+    "group": "T"
+  },
+  {
+    "name": "河北省",
+    "key": 13,
+    "group": "H"
+  },
+  {
+    "name": "山西省",
+    "key": 14,
+    "group": "S"
+  },
+  {
+    "name": "内蒙古自治区",
+    "key": 15,
+    "group": "N"
+  },
+  {
+    "name": "辽宁省",
+    "key": 21,
+    "group": "L"
+  },
+  {
+    "name": "吉林省",
+    "key": 22,
+    "group": "J"
+  },
+  {
+    "name": "黑龙江省",
+    "key": 23,
+    "group": "H"
+  },
+  {
+    "name": "上海市",
+    "key": 31,
+    "group": "S"
+  },
+  {
+    "name": "江苏省",
+    "key": 32,
+    "group": "J"
+  },
+  {
+    "name": "浙江省",
+    "key": 33,
+    "group": "Z"
+  },
+  {
+    "name": "安徽省",
+    "key": 34,
+    "group": "A"
+  },
+  {
+    "name": "福建省",
+    "key": 35,
+    "group": "F"
+  },
+  {
+    "name": "江西省",
+    "key": 36,
+    "group": "J"
+  },
+  {
+    "name": "山东省",
+    "key": 37,
+    "group": "S"
+  },
+  {
+    "name": "河南省",
+    "key": 41,
+    "group": "H"
+  },
+  {
+    "name": "湖北省",
+    "key": 42,
+    "group": "H"
+  },
+  {
+    "name": "湖南省",
+    "key": 43,
+    "group": "H"
+  },
+  {
+    "name": "广东省",
+    "key": 44,
+    "group": "G"
+  },
+  {
+    "name": "广西壮族自治区",
+    "key": 45,
+    "group": "G"
+  },
+  {
+    "name": "海南省",
+    "key": 46,
+    "group": "H"
+  },
+  {
+    "name": "重庆市",
+    "key": 50,
+    "group": "C"
+  },
+  {
+    "name": "四川省",
+    "key": 51,
+    "group": "S"
+  },
+  {
+    "name": "贵州省",
+    "key": 52,
+    "group": "G"
+  },
+  {
+    "name": "云南省",
+    "key": 53,
+    "group": "Y"
+  },
+  {
+    "name": "西藏自治区",
+    "key": 54,
+    "group": "X"
+  },
+  {
+    "name": "陕西省",
+    "key": 61,
+    "group": "S"
+  },
+  {
+    "name": "甘肃省",
+    "key": 62,
+    "group": "G"
+  },
+  {
+    "name": "青海省",
+    "key": 63,
+    "group": "Q"
+  },
+  {
+    "name": "宁夏回族自治区",
+    "key": 64,
+    "group": "N"
+  },
+  {
+    "name": "新疆维吾尔自治区",
+    "key": 65,
+    "group": "X"
+  }
+]
